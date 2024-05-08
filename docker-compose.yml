@@ -14,6 +14,7 @@ services:
     volumes:
       - '/opt/docker/volumes/pihole/pihole/:/etc/pihole/'
       - '/opt/docker/volumes/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
+      - '/opt/docker/volumes/pihole/etc-cont-init.d/10-fixroutes.sh:/etc/cont-init.d/10-fixroutes.sh'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
