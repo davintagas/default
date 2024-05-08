@@ -6,9 +6,9 @@ services:
     container_name: pihole
     image: pihole/pihole:2021.09
     hostname: pihole.lan
-    WEBPASSWORD: 'age'
     environment:
-      # TZ: 'Asia/Jakarta'
+      TZ: 'Asia/Jakarta'
+      WEBPASSWORD: 'age'
       # WEBPASSWORD: 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:
