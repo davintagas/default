@@ -4,7 +4,7 @@ version: "3.3"
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:2021.09
+    image: pihole/pihole:latest
     hostname: pihole.lan
     environment:
       TZ: 'Asia/Jakarta'
@@ -22,7 +22,7 @@ services:
     networks:
       internal:
       lan:
-        ipv4_address: 192.168.1.7
+        ipv4_address: 192.168.1.10
 
 networks:
   internal:
@@ -33,5 +33,4 @@ networks:
       parent: br-lan.20
     ipam:
       config:
-        - subnet: 192.168.1.4/24
-          gateway: 192.168.1.5
+        - subnet: 192.168.1.0/24
