@@ -14,24 +14,22 @@ services:
     volumes:
       - '/opt/docker/volumes/pihole/pihole/:/etc/pihole/'
       - '/opt/docker/volumes/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
-      - '/opt/docker/volumes/pihole/etc-cont-init.d/10-fixroutes.sh:/etc/cont-init.d/10-fixroutes.sh'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
     networks:
-      internal:
-      lan:
-        ipv4_address: 192.168.1.10
+      lan20:
+        ipv4_address: 192.168.20.3
 
 networks:
-  internal:
-  lan:
-    name: lan
+  lan20:
+    name: lan20
     driver: macvlan
     driver_opts:
-      parent: br-lan.20
+      parent: eth0.20
     ipam:
       config:
-        - subnet: 192.168.1.0/24
+        - subnet: 192.168.20.0/24
+          gateway: 192.168.20.1
