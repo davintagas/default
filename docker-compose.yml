@@ -14,8 +14,8 @@ services:
     volumes:
       - '/opt/docker/volumes/pihole/etc-pihole/:/etc/pihole/'
       - '/opt/docker/volumes/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
-      - '/opt/docker/volumes/pihole/var-log/:/var/log'
-      - '/opt/docker/volumes/pihole/etc-cont-init.d/10-fixroutes.sh:/etc/cont-init.d/10-fixroutes.sh'
+      # - '/opt/docker/volumes/pihole/var-log/:/var/log'
+      # - '/opt/docker/volumes/pihole/etc-cont-init.d/10-fixroutes.sh:/etc/cont-init.d/10-fixroutes.sh'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
@@ -29,7 +29,7 @@ networks:
     name: lan20
     driver: macvlan
     driver_opts:
-      parent: eth0.20
+      parent: br-lan.20
     ipam:
       config:
         - subnet: 192.168.20.0/24
