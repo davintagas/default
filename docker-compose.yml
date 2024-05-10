@@ -4,7 +4,7 @@ version: "3.3"
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: pihole/pihole:2024.05.0
     hostname: pihole.lan
     environment:
       TZ: 'Asia/Jakarta'
@@ -12,24 +12,27 @@ services:
       # WEBPASSWORD: 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:
-      - '/opt/docker/volumes/pihole/pihole/:/etc/pihole/'
-      - '/opt/docker/volumes/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
+      - '/opt/docker/volumes/pihole/etc-pihole/:/etc/pihole/'
+      - '/opt/docker/volumes/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - '/opt/docker/volumes/pihole/var-log/:/var/log'
+      - '/opt/docker/volumes/pihole/etc-cont-init.d/10-fixroutes.sh:/etc/cont-init.d/10-fixroutes.sh'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
     networks:
-      lan20:
-        ipv4_address: 192.168.20.3
-
+      internal:
+      lan:
+        ipv4_address: 192.168.1.10
+ 
 networks:
-  lan20:
-    name: lan20
+  internal:
+  lan:
+    name: lan
     driver: macvlan
     driver_opts:
-      parent: eth0.20
+      parent: br-lan.20
     ipam:
       config:
-        - subnet: 192.168.20.0/24
-          gateway: 192.168.20.1
+        - subnet: 192.168.1.0/24
