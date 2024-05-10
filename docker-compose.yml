@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     networks:
       lan20:
-        ipv4_address: 192.168.20.3
+        ipv4_address: 192.168.1.10
 networks:
   lan20:
     name: lan20
@@ -32,5 +32,5 @@ networks:
       parent: br-lan.20
     ipam:
       config:
-        - subnet: 192.168.20.0/24
-          gateway: 192.168.20.1
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
