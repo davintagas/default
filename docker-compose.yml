@@ -22,15 +22,15 @@ services:
       - NET_ADMIN
     restart: unless-stopped
     networks:
-      lan20:
-        ipv4_address: 192.168.20.3
+      internal:
+      lan:
+        ipv4_address: 192.168.1.10
 networks:
-  lan20:
+  lan:
     name: lan20
     driver: macvlan
     driver_opts:
       parent: br-lan.20
     ipam:
       config:
-        - subnet: 192.168.20.0/24
-          gateway: 192.168.20.1
+        - subnet: 192.168.1.0/24
