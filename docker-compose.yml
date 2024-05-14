@@ -29,7 +29,7 @@ networks:
     name: lan20
     driver: macvlan
     driver_opts:
-      parent: eth0.20
+      parent: br-lan.20
     ipam:
       config:
         - subnet: 192.168.20.0/24
