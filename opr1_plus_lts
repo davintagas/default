@@ -2,6 +2,17 @@
 
 #Build OpenWRT
 make clean
-make image RELEASE="23.05.2" PROFILE="xunlong_orangepi-r1-plus-lts" PACKAGES="luci luci-app-adblock luci-app-adblock-fast luci-app-commands luci-app-ddns luci-app-diag-core luci-app-firewall luci-app-nlbwmon luci-app-ntpc luci-app-opkg luci-app-samba4 luci-app-softether luci-app-statistics luci-app-unbound luci-app-upnp luci-app-vnstat luci-app-watchcat luci-app-wireguard blkid bmon htop ifstat iftop iperf3 iwinfo lsblk lscpu lsblk fdisk losetup resize2fs nano rsync rtorrent tcpdump adblock arp-scan blkid bmon kmod-usb-storage kmod-usb-storage-uas rsync kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v3 kmod-fs-nfs-v4 kmod-fs-ntfs luci-app-diag-core block-mount ppp kmod-pppoe ppp-mod-pppoe luci-proto-ppp luci-proto-pppossh pppoe-discovery kmod-pppoa comgt ppp-mod-pppoa rp-pppoe-common luci-proto-ipv6 luci-proto-wireguard" DISABLED_SERVICES="adblock banip gpio_switch lm-sensors softethervpnclient" 
-
-
+make image RELEASE="23.05.2" PROFILE="xunlong_orangepi-r1-plus-lts" \
+PACKAGES="luci luci-app-adblock luci-app-adblock-fast luci-app-commands \
+luci-app-ddns luci-app-diag-core luci-app-firewall luci-app-nlbwmon luci-app-ntpc \
+luci-app-opkg luci-app-samba4 luci-app-softether luci-app-statistics luci-app-unbound \
+luci-app-upnp luci-app-vnstat luci-app-watchcat luci-app-wireguard blkid bmon \
+htop ifstat iftop iperf3 iwinfo lsblk lscpu lsblk fdisk losetup resize2fs nano \
+rsync rtorrent tcpdump adblock arp-scan blkid bmon kmod-usb-storage \
+kmod-usb-storage-uas rsync kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-nfs \
+kmod-fs-nfs-common kmod-fs-nfs-v3 kmod-fs-nfs-v4 kmod-fs-ntfs luci-app-diag-core \
+block-mount ppp kmod-pppoe ppp-mod-pppoe luci-proto-ppp luci-proto-pppossh \
+pppoe-discovery kmod-pppoa comgt ppp-mod-pppoa rp-pppoe-common luci-proto-ipv6 \
+luci-proto-wireguard" \
+DISABLED_SERVICES="adblock banip gpio_switch lm-sensors softethervpnclient" \
+FILES="files"
