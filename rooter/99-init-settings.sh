@@ -11,6 +11,6 @@ echo '0 0,6,16 * * * sh -i /usr/lib/rooter/connect/reconnect.sh 1' >> /etc/cront
 echo '*/30 * * * * sync && echo 3 > /proc/sys/vm/drop_caches' >> /etc/crontabs/root
 /etc/init.d/cron restart
 
-chmod +x /etc/profile.d/
+chmod +x /etc/profile.d/30-sysinfo.sh
 
 exit 0
