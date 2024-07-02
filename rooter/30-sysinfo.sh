@@ -15,30 +15,6 @@ SHOW_IP_PATTERN="^[ewr].*|^br.*|^lt.*|^umts.*"
 	done
 }
 
-# find the partition where root is located
-ROOT_PTNAME="$(df -h /boot | tail -n1 | awk '{print $1}' | awk -F '/' '{print $3}')"
-if [[ -n "${ROOT_PTNAME}" ]]; then
-	# find the disk where the partition is located, only supports mmcblk?p? sd?? hd?? vd?? and other formats
-	case "${ROOT_PTNAME}" in
-	mmcblk?p[1-4])
-		DISK_NAME="${ROOT_PTNAME:0:-2}"
-		PARTITION_NAME="p"
-		;;
-	[hsv]d[a-z][1-4])
-		DISK_NAME="${ROOT_PTNAME:0:-1}"
-		PARTITION_NAME=""
-		;;
-	nvme?n?p[1-4])
-		DISK_NAME="${ROOT_PTNAME:0:-2}"
-		PARTITION_NAME="p"
-		;;
-	*)
-		echo "Unable to recognize the disk type of ${ROOT_PTNAME}!"
-		;;
-	esac
-	PARTITION_PATH="/mnt/${DISK_NAME}${PARTITION_NAME}4"
-fi
-
 # don't edit below here
 function display() {
 	# $1=name $2=value $3=red_limit $4=minimal_show_limit $5=unit $6=after $7=acs/desc{
@@ -89,11 +65,6 @@ function storage_info() {
 	RootInfo="$(df -h /)"
 	root_usage="$(awk '/\// {print $(NF-1)}' <<<${RootInfo} | sed 's/%//g')"
 	root_total="$(awk '/\// {print $(NF-4)}' <<<${RootInfo})"
-
-	# storage info
-	BootInfo="$(df -h /boot)"
-	boot_usage="$(awk '/\// {print $(NF-1)}' <<<${BootInfo} | sed 's/%//g')"
-	boot_total="$(awk '/\// {print $(NF-4)}' <<<${BootInfo})"
 
 	# Get the size of the extended partition
 	if [[ -d "${PARTITION_PATH}" ]]; then
