@@ -6,8 +6,9 @@ uci set system.@system[0].zonename='Asia/Jakarta'
 uci commit
 
 # add cron job for modem l860-gl
-echo '# auto renew ip lease for modem rakitan' >> /etc/crontabs/root
-echo '# 30 3 * * * echo AT+CFUN=15 | atinout - /dev/ttyACM2 -' >> /etc/crontabs/root
+echo '# Auto Renew IP lease for Modem Rakitan' >> /etc/crontabs/root
+echo '30 3 * * * echo AT+CFUN=15 | atinout - /dev/ttyACM2 -' >> /etc/crontabs/root
+echo '*/30 * * * * sync && echo 3 > /proc/sys/vm/drop_caches' >> /etc/crontabs/root
 /etc/init.d/cron restart
 
 chmod +x /usr/bin/cpustat
