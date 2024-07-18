@@ -14,5 +14,9 @@ echo '*/30 * * * * sync && echo 3 > /proc/sys/vm/drop_caches' >> /etc/crontabs/r
 chmod +x /usr/bin/cpustat
 chmod +x /etc/profile.d/30-sysinfo.sh
 sed -i 's|/bin/ash|/bin/bash|g' /etc/passwd
+sed -i '/4icg/d' /etc/opkg/distfeeds.conf
+sed -i '/internet/d' /etc/opkg/distfeeds.conf
+sed -i '/modemfeed/d' /etc/opkg/distfeeds.conf
+sed -i '/passwall/d' /etc/opkg/distfeeds.conf
 
 exit 0
