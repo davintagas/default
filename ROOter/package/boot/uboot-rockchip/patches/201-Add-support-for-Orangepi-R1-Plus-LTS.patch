@@ -1,7 +1,7 @@
-From 68836b81f7d6328a1a5a6cce5a00bf4010f742e5 Mon Sep 17 00:00:00 2001
+From e8165bf54aaece6b6eb2d5d95d588cceb4adda03 Mon Sep 17 00:00:00 2001
 From: baiywt <baiywt_gj@163.com>
-Date: Wed, 24 Nov 2021 19:59:38 +0800
-Subject: [PATCH] Add support for Orangepi R1 Plus LTS
+Date: Thu, 25 Nov 2021 20:59:16 +0800
+Subject: [PATCH] Add support for OrangePi R1 Plus LTS
 
 ---
  arch/arm/dts/Makefile                         |  1 +
@@ -12,10 +12,10 @@ Subject: [PATCH] Add support for Orangepi R1 Plus LTS
  create mode 100644 configs/orangepi-r1-plus-lts-rk3328_defconfig
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index adfe6c3f..3d4e0f59 100644
+index d35d0990..d02ff131 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -110,6 +110,7 @@ dtb-$(CONFIG_ROCKCHIP_RK3328) += \
+@@ -112,6 +112,7 @@ dtb-$(CONFIG_ROCKCHIP_RK3328) += \
  	rk3328-evb.dtb \
  	rk3328-nanopi-r2s.dtb \
  	rk3328-orangepi-r1-plus.dtb \
@@ -25,7 +25,7 @@ index adfe6c3f..3d4e0f59 100644
  	rk3328-rock-pi-e.dtb
 diff --git a/arch/arm/dts/rk3328-orangepi-r1-plus-lts.dts b/arch/arm/dts/rk3328-orangepi-r1-plus-lts.dts
 new file mode 100644
-index 00000000..e6225b0c
+index 00000000..5b7d97a0
 --- /dev/null
 +++ b/arch/arm/dts/rk3328-orangepi-r1-plus-lts.dts
 @@ -0,0 +1,7 @@
