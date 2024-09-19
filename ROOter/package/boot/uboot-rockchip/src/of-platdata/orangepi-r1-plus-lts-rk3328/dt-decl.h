@@ -13,7 +13,6 @@ extern U_BOOT_DRIVER(rockchip_rk3328_cru);
 extern U_BOOT_DRIVER(rockchip_rk3328_dmc);
 extern U_BOOT_DRIVER(rockchip_rk3288_dw_mshc);
 extern U_BOOT_DRIVER(ns16550_serial);
-extern U_BOOT_DRIVER(rockchip_rk3328_spi);
 extern U_BOOT_DRIVER(rockchip_rk3328_grf);
 
 /* uclass driver declarations - needed for DM_UCLASS_DRIVER_REF() */
