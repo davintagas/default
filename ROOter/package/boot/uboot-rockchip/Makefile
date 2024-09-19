@@ -35,6 +35,18 @@ define U-Boot/nanopi-r2s-rk3328
   OF_PLATDATA:=$(1)
 endef
 
+define U-Boot/orangepi-r1-plus-rk3328
+  BUILD_SUBTARGET:=armv8
+  NAME:=OrangePi R1 Plus
+  BUILD_DEVICES:= \
+    xunlong_orangepi-r1-plus
+  DEPENDS:=+PACKAGE_u-boot-orangepi-r1-plus-rk3328:arm-trusted-firmware-rk3328
+  PKG_BUILD_DEPENDS:=arm-trusted-firmware-rk3328
+  ATF:=rk322xh_bl31_v1.46.elf
+  OF_PLATDATA:=$(1)
+  USE_RKBIN:=1
+endef
+
 define U-Boot/orangepi-r1-plus-lts-rk3328
   BUILD_SUBTARGET:=armv8
   NAME:=OrangePi R1 Plus LTS
@@ -74,6 +86,7 @@ UBOOT_TARGETS := \
   rock-pi-4-rk3399 \
   rockpro64-rk3399 \
   nanopi-r2s-rk3328 \
+  orangepi-r1-plus-rk3328 \
   orangepi-r1-plus-lts-rk3328
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
