@@ -19,7 +19,6 @@
 		"config": ".config_r1plus",
 		"image": "openwrt-rockchip-armv8-xunlong-orangepi-r1-plus-lts-ext4-sysupgrade.img.gz",
 		"imagepath": "/rockchip/armv8/",
-		"ext": "-ext4.img",
 		"addons": ["readme.pdf"]
 	},
 	"RASPPI5": {
