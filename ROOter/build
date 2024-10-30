@@ -1,6 +1,6 @@
 #!/bin/sh
 
-core="-j2"
+core="-j$(nproc)"
 #core=""
 
 DATE=$(date +%Y-%m-%d)
