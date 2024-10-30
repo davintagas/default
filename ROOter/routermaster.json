@@ -9,6 +9,7 @@
 		"mod": "OrangePI-R1-PLUS-LTS",
 		"ext": "-upgrade.img.gz",
 		"addons": ["readme.pdf"]
+	},
 	"LBR20": {
 		"details": "Netgear LBR20",
 		"type": "2",
