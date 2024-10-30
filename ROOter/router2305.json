@@ -1,0 +1,193 @@
+{
+	"R1+": {
+		"details": "OrangePI R1 PLUS LTS",
+		"type": "1",
+		"build": "2305",
+		"config": ".config_r1+",
+		"image": "xunlong-orangepi-r1-plus-lts-ext4-sysupgrade.img.gz",
+		"imagepath": "/rockchip/armv8/",
+		"addons": ["readme.pdf"]
+	},
+	"BPIR3": {
+		"details": "BananaPi BPi R3",
+		"type": "4",
+		"build": "2305",
+		"config": ".config_bpir3",
+		"image1": "openwrt-mediatek-filogic-bananapi_bpi-r3-sdcard.img.gz",
+		"image2": "openwrt-mediatek-filogic-bananapi_bpi-r3-sdcard.img",
+		"imagepath": "/mediatek/filogic/",
+		"mod": "BananaPi-BPi-R3",
+		"addons": ["readme.pdf"]
+	},
+	"OMNIA": {
+		"details": "Turris Omnia-2305",
+		"type": "1",
+		"build": "2305",
+		"config": ".config_omnia",
+		"image": "openwrt-mvebu-cortexa9-cznic_turris-omnia-sysupgrade.img.gz",
+		"imagepath": "/mvebu/cortexa9/",
+		"ext": "-upgrade.img.gz",
+		"mod": "Turris-Omnia-2305",
+		"addons": ["readme.pdf", "turris-omnia-initramfs.tar.gz", "turris.txt"]
+	},
+	"WG1602-32": {
+		"details": "ZBT WG1602",
+		"type": "1",
+		"build": "2305",
+		"config": ".config_wg1602-32",
+		"image": "openwrt-ramips-mt7621-zbtlink_zbt-wg1602-v04-32m-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "ZBT-WG1602-32",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf", "readmerecovery.txt", "usb-configuration.txt"]
+	},
+	"WG1608-32": {
+		"details": "ZBT WG1608-32M",
+		"type": "1",
+		"build": "2305",
+		"config": ".config_wg1608-32",
+		"image": "openwrt-ramips-mt7621-zbtlink_zbt-wg1608-32m-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "ZBT-WG1608-32M",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf", "readmerecovery.txt"]
+	},
+	"MR8300": {
+		"details": "Linksys MR8300",
+		"type": "2",
+		"build": "2305",
+		"config": ".config_mr8300",
+		"image1": "openwrt-ipq40xx-generic-linksys_mr8300-squashfs-sysupgrade.bin",	
+		"image2": "openwrt-ipq40xx-generic-linksys_mr8300-squashfs-factory.bin",
+		"imagepath": "/ipq40xx/generic/",
+		"mod": "Linksys-MR8300",
+		"ext1": "-upgrade.bin",
+		"ext2": "-factory.bin",
+		"addons": ["readme.pdf"]
+	},
+	"WRX36": {
+		"details": "Dynalink DL-WRX36",
+		"type": "2",
+		"build": "2305",
+		"config": ".config_wrx36",
+		"image1": "openwrt-ipq807x-generic-dynalink_dl-wrx36-squashfs-sysupgrade.bin",	
+		"image2": "openwrt-ipq807x-generic-dynalink_dl-wrx36-initramfs-uImage.itb",
+		"imagepath": "/ipq807x/generic/",
+		"mod": "Dynalink-DL-WRX36",
+		"ext1": "-upgrade.bin",
+		"ext2": "-initramfs.itb",
+		"addons": ["readme.pdf"]
+	},
+	"WS1688-16": {
+		"details": "Huasifei WS1688AX-16",
+		"type": "1",
+		"build": "2102",
+		"package": "ext-huasifei",
+		"config": ".config_ws1688",
+		"image": "openwrt-ramips-mt7621-ws1688-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "Huasifei-WS1688AX-16",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf"],
+		"custom": {
+			"name": {
+				"model": "WS1688AX",
+				"hostname": "WS1688AX"
+			},
+			"wifi": {
+				"SSID2G": "wifi6-2.4g",
+				"SSID5G": "wifi6-5.8g",
+				"Password": ""
+			},
+			"image": {
+				"Material": "hua.png",
+				"Argon": "hua.png",
+				"Tomato": "hua.png"
+			},
+			"files": "/huasifei/files1688/"	
+		}
+	},
+	"WS1688-32": {
+		"details": "Huasifei WS1688AX-32",
+		"type": "1",
+		"build": "2102",
+		"package": "ext-huasifei",
+		"config": ".config_ws1688-32",
+		"image": "openwrt-ramips-mt7621-ws1688-32-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "Huasifei-WS1688AX-32",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf"],
+		"custom": {
+			"name": {
+				"model": "WS1688AX-32",
+				"hostname": "WS1688AX"
+			},
+			"wifi": {
+				"SSID2G": "wifi6-2.4g",
+				"SSID5G": "wifi6-5.8g",
+				"Password": ""
+			},
+			"image": {
+				"Material": "hua.png",
+				"Argon": "hua.png",
+				"Tomato": "hua.png"
+			},
+			"files": "/huasifei/files1688/"	
+		}
+	},
+	"R8000": {
+		"details": "Netgear R8000",
+		"type": "1",
+		"build": "2203",
+		"config": ".config_r8000",
+		"image": "openwrt-bcm53xx-generic-netgear_r8000-squashfs.chk",	
+		"imagepath": "/bcm53xx/generic/",
+		"mod": "Netgear-R8000",
+		"ext": "-upgrade.chk",
+		"addons": ["readme.pdf"]
+	},
+	"WG259": {
+		"details": "ZBT WG259",
+		"type": "1",
+		"build": "2102",
+		"config": ".config_wg259",
+		"image": "openwrt-ramips-mt7621-zbtlink_zbt-wg259-16m-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "ZBT-WG259",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf", "readmerecovery.txt"]
+	},
+	"WG1602-16": {
+		"details": "ZBT WG1602-16",
+		"type": "1",
+		"build": "2102",
+		"config": ".config_wg1602",
+		"image": "openwrt-ramips-mt7621-zbtlink_zbt-wg1602-16m-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "ZBT-WG1602-16",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf", "readmerecovery.txt", "usb-configuration.txt"]
+	},
+	"WG1608-16": {
+		"details": "ZBT WG1608-16",
+		"type": "1",
+		"build": "2203",
+		"config": ".config_wg1608",
+		"image": "openwrt-ramips-mt7621-zbtlink_zbt-wg1608-16m-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "ZBT-WG1608-16",
+		"ext": "-upgrade.bin",
+		"addons": ["readme.pdf", "readmerecovery.txt"]
+	},
+	"MT6000": {
+		"details": "Gl.iNet MT6000",
+		"type": "1",
+		"build": "2305",
+		"config": ".config_mt6000",
+		"image": "openwrt-mediatek-filogic-glinet_gl-mt6000-squashfs-sysupgrade.bin",
+		"imagepath": "/mediatek/filogic/",
+		"mod": "GliNet_MT6000",
+		"ext": "-upgrade.bin"
+	}
+}
