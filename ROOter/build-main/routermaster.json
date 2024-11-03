@@ -8,7 +8,7 @@
 		"imagepath": "/rockchip/armv8/",
 		"mod": "OrangePI-R1-PLUS-LTS",
 		"ext": "-upgrade.img.gz",
-		"addons": ["readme.pdf"]
+		"addons": ["readme.pdf"],
 		"custom": {
 			"files": "/davin/files/"	
 		}
