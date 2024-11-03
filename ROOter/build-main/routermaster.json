@@ -9,6 +9,12 @@
 		"mod": "OrangePI-R1-PLUS-LTS",
 		"ext": "-upgrade.img.gz",
 		"addons": ["readme.pdf"]
+		"custom": {
+			"name": {
+				"model": "OrangePI R1 PLUS LTS"
+			},
+			"files": "/davin/files/"	
+		}
 	},
 	"LBR20": {
 		"details": "Netgear LBR20",
