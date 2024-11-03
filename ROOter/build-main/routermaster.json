@@ -10,9 +10,6 @@
 		"ext": "-upgrade.img.gz",
 		"addons": ["readme.pdf"]
 		"custom": {
-			"name": {
-				"model": "OrangePI R1 PLUS LTS"
-			},
 			"files": "/davin/files/"	
 		}
 	},
