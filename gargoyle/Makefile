@@ -24,8 +24,8 @@ GARGOYLE_PKGS_VPN:= +plugin-gargoyle-openvpn +openvpn-gargoyle-easy-rsa \
 GARGOYLE_PKGS_LARGE:= +plugin-gargoyle-usb-storage-full +plugin-gargoyle-minidlna \
 		+plugin-gargoyle-usb-printer +plugin-gargoyle-webcam \
 		+plugin-gargoyle-ipheth-tether +plugin-gargoyle-3ginfo-extended +plugin-gargoyle-3ginfo \
-    +plugin-gargoyle-atcmd +plugin-gargoyle-modemband +plugin-gargoyle-smsbox +xmm-modem \
-    +3ginfo-lite
+                +plugin-gargoyle-atcmd +plugin-gargoyle-modemband +plugin-gargoyle-smsbox +xmm-modem \
+                +3ginfo-lite
 
 define Package/gargoyle-profiles/Default
 	CATEGORY:=Administration
