@@ -27,6 +27,7 @@ CONFIG_PACKAGE_gargoyle-large=y
 # CONFIG_PACKAGE_gargoyle-vpn is not set
 
 CONFIG_PACKAGE_plugin-gargoyle-3ginfo=y
+CONFIG_PACKAGE_3ginfo-lite=y
 CONFIG_PACKAGE_plugin-gargoyle-3ginfo-extended=y
 CONFIG_PACKAGE_plugin-gargoyle-atcmd=y
 CONFIG_PACKAGE_plugin-gargoyle-smsbox=y
