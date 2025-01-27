@@ -33,5 +33,4 @@ CONFIG_PACKAGE_plugin-gargoyle-atcmd=y
 CONFIG_PACKAGE_plugin-gargoyle-smsbox=y
 
 CONFIG_PACKAGE_xmm-modem=y
-
 CONFIG_PACKAGE_openssh-sftp-server=y
