@@ -4207,6 +4207,7 @@ CONFIG_PACKAGE_minidlna=y
 #
 # Network
 #
+CONFIG_PACKAGE_openssh-sftp-server=y
 
 #
 # File Transfer
