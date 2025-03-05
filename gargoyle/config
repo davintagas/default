@@ -4692,6 +4692,9 @@ CONFIG_PACKAGE_swap-utils=m
 # CONFIG_PACKAGE_libjpeg-turbo-utils is not set
 # end of Image Manipulation
 
+CONFIG_PACKAGE_xmm-modem=y
+CONFIG_PACKAGE_atinout=y
+
 #
 # Shells
 #
