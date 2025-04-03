@@ -1,0 +1,8 @@
+config interface 'wan'
+	option device '/dev/ttyACM2'
+	option proto 'xmm'
+	option pdp 'ip'
+	option profile '1'
+	option apn 'internet'
+	option delay '5'
+	
