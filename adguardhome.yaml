@@ -102,22 +102,8 @@ filters:
     url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
     name: AdAway Default Blocklist
     id: 2
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_59.txt
-    name: AdGuard DNS Popup Hosts filter
-    id: 1748698561
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_22.txt
-    name: 'IDN: ABPindo'
-    id: 1748698562
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_45.txt
-    name: HaGeZi's Allowlist Referral
-    id: 1748698563
 whitelist_filters: []
 user_rules: []
-  - '@@||pagead2.googlesyndication.com^$important'
-  - ""
 dhcp:
   enabled: false
   interface_name: ""
