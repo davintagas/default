@@ -396,7 +396,7 @@ proto_atc_setup () {
                         'NW DETACH' )
                             nw_disconnect=1
                             ;;
-                        'NW PDN DEACT 0' )
+                        'ME PDN DEACT 0' )
                             echo 'Session disconnected by the network'
                             proto_init_update "$ifname" 0
                             proto_send_update "$interface"
