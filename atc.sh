@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# AT commands for test of Fibocom L860-GL modem
-# 2025-05-13 by mrhaav
+# AT commands for Fibocom L850-GL modem
+# 2024-06-23 by mrhaav
 #
 
 
@@ -100,27 +100,23 @@ CxREG () {
     local reg_string=$1
     local lac_tac g_cell_id rat reject_cause
 
-    if [ ${#reg_string} -gt 4 ]
-    then
-        lac_tac=$(echo $reg_string | awk -F ',' '{print $2}')
-        g_cell_id=$(echo $reg_string | awk -F ',' '{print $3}')
-        rat=$(echo $reg_string | awk -F ',' '{print $4}')
-        rat=$(nb_rat $rat)
-        reject_cause=$(echo $reg_string | awk -F ',' '{print $6}')
-        [ -z "$reject_cause" ] && reject_cause=0
-        [ "$rat" = 'WCDMA' ] && {
-            reg_string=', RNCid:'$(printf '%d' 0x${g_cell_id:: -4})' LAC:'$(printf '%d' 0x$lac_tac)' CellId:'$(printf '%d' 0x${g_cell_id: -4})
-        }
-        [ "${rat::3}" = 'LTE' ] && {
-            reg_string=', TAC:'$(printf '%d' 0x$lac_tac)' eNodeB:'$(printf '%d' 0x${g_cell_id:: -2})'-'$(printf '%d' 0x${g_cell_id: -2})
-        }
-        [ "$reject_cause" -gt 0 ] && reg_string=$reg_string' - Reject cause: '$reject_cause
-        [ "$reject_cause" -eq 0 -a "${reg_string::1}" = '0' ] && reg_string=''
-    else
-        reg_string=''
-    fi
+    lac_tac=$(echo $reg_string | awk -F ',' '{print $2}')
+    g_cell_id=$(echo $reg_string | awk -F ',' '{print $3}')
+    rat=$(echo $reg_string | awk -F ',' '{print $4}')
+    rat=$(nb_rat $rat)
+    reject_cause=$(echo $reg_string | awk -F ',' '{print $6}')
+    [ "$rat" = 'WCDMA' ] && {
+        reg_string=', RNCid:'$(printf '%d' 0x${g_cell_id:: -4})' LAC:'$(printf '%d' 0x$lac_tac)' CellId:'$(printf '%d' 0x${g_cell_id: -4})
+    }
+    [ "${rat::3}" = 'LTE' ] && {
+        reg_string=', TAC:'$(printf '%d' 0x$lac_tac)' eNodeB:'$(printf '%d' 0x${g_cell_id:: -2})'-'$(printf '%d' 0x${g_cell_id: -2})
+    }
+    [ "$reject_cause" -gt 0 ] && reg_string=$reg_string' - Reject cause: '$reject_cause
+    [ "$reject_cause" -eq 0 -a "${reg_string::1}" = '0' ] && reg_string=''
+
     echo $reg_string
 }
+
 proto_atc_init_config() {
     no_device=1
     available=1
@@ -148,12 +144,6 @@ proto_atc_setup () {
 
     json_get_vars device ifname apn pdp pincode auth username password delay atc_debug $PROTO_DEFAULT_OPTIONS
 
-    [ -z "$delay" ] && delay=15
-    [ ! -f /var/modem.status ] && {
-        echo 'Modem boot delay '$delay's'
-        sleep "$delay"
-    }
-
     devname=$(basename $device)
     case "$devname" in
         *ttyACM*)
@@ -177,49 +167,29 @@ proto_atc_setup () {
     }
 
     zone="$(fw3 -q network "$interface" 2>/dev/null)"
-    echo 0 > /var/modem.status
+
     echo Initiate modem with interface $ifname
 
 # Set error codes to verbose
-    atOut=$(COMMAND='AT+CMEE=2' gcom -d "$device" -s /etc/gcom/run_at.gcom 2>&1)
+    atOut=$(COMMAND='AT+CMEE=2' gcom -d "$device" -s /etc/gcom/run_at.gcom)
     while [ "$atOut" != 'OK' ]
     do
-        echo 'Modem not ready yet'
-        [ "$atc_debug" -gt 1 ] && {
-            echo $device
-            [ -n "$(echo "$atOut" | grep 'Error @')" ] && atOut=$(echo "$atOut" | grep 'Error @')
-            echo $atOut
-        }
+        echo 'Modem not ready yet: '$atOut
         sleep 1
-        atOut=$(COMMAND='AT+CMEE=2' gcom -d "$device" -s /etc/gcom/run_at.gcom 2>&1)
+        atOut=$(COMMAND='AT+CMEE=2' gcom -d "$device" -s /etc/gcom/run_at.gcom)
     done
 
 # Check SIMcard and PIN status
-    atOut=$(COMMAND='AT+CPIN?' gcom -d "$device" -s /etc/gcom/getrun_at.gcom)
-    if [ -n "$(echo "$atOut" | grep 'CPIN:')" ]
-    then
-        atOut=$(echo "$atOut" | grep 'CPIN:' | awk -F ':' '{print $2}' | sed -e 's/[\r\n]//g')
-        [ "${atOut::1}" = ' ' ] && atOut=${atOut:1}
-    elif [ -n "$(echo "$atOut" | grep 'CME ERROR:')" ]
-    then
-        atOut=$(echo "$atOut" | grep 'CME ERROR:' | awk -F ':' '{print $2}' | sed -e 's/[\r\n]//g')
-        [ "${atOut::1}" = ' ' ] && atOut=${atOut:1}
-        echo $atOut
-        proto_notify_error "$interface" "$atOut"
-        proto_block_restart "$interface"
-        return 1
-    else
-        echo 'Can not read SIMcard'
-        proto_notify_error "$interface" SIMreadfailure
-        proto_block_restart "$interface"
-        return 1
-    fi
-
+    atOut=$(COMMAND='AT+CPIN?' gcom -d "$device" -s /etc/gcom/getrun_at.gcom | grep CPIN: | awk -F ' ' '{print $2 $3}' | sed -e 's/[\r\n]//g')
+    while [ -z "$atOut" ]
+    do
+        atOut=$(COMMAND='AT+CPIN?' gcom -d "$device" -s /etc/gcom/getrun_at.gcom | grep CPIN: | awk -F ' ' '{print $2 $3}' | sed -e 's/[\r\n]//g')
+    done
     case $atOut in
         READY )
             echo SIMcard ready
             ;;
-        'SIM PIN' )
+        SIMPIN )
             if [ -z "$pincode" ]
             then
                 echo PINcode required but missing
@@ -258,19 +228,11 @@ proto_atc_setup () {
     atOut=$(COMMAND='AT+CGMM' gcom -d "$device" -s /etc/gcom/getrun_at.gcom | grep CGMM: | awk -F ' ' '{print $2}')
     model=$(echo $atOut | sed -e 's/"//g')
     model=$(echo $model | sed -e 's/\r//g')
-    [ "$atc_debug" -gt 1 ] && {
-        atOut=$(COMMAND='AT+CGMR' gcom -d "$device" -s /etc/gcom/getrun_at.gcom | grep CGMR: | awk -F ' ' '{print $2}')
-        fw=$(echo $atOut | sed -e 's/"//g')
-        fw=$(echo $fw | sed -e 's/\r//g')
-        echo $manufactor
-        echo $model
-        echo $fw
+    [ "$manufactor" = 'Fibocom' -a "$model" = 'L850' ] || {
+        echo 'Wrong script. This is optimized for: Fibocom, L850'
+        proto_notify_error "$interface" MODEM
+        proto_set_available "$interface" 0
     }
-#    [ "$manufactor" = 'Fibocom' -a "$model" = 'L850' ] || {
-#        echo 'Wrong script. This is optimized for: Fibocom, L850'
-#        proto_notify_error "$interface" MODEM
-#        proto_set_available "$interface" 0
-#    }
 
 # URC, CREG, CGREG and CEREG
     atOut=$(COMMAND='AT+CREG=0' gcom -d "$device" -s /etc/gcom/run_at.gcom)
@@ -296,10 +258,6 @@ proto_atc_setup () {
 
 # Set IPv6 format
     atOut=$(COMMAND='AT+CGPIAF=1,1,0,1' gcom -d "$device" -s /etc/gcom/run_at.gcom)
-    [ "$atOut" != 'OK' ] && echo $atOut
-
-# Disable camped cell info
-    atOut=$(COMMAND='AT+XCCINFO=0' gcom -d "$device" -s /etc/gcom/run_at.gcom)
     [ "$atOut" != 'OK' ] && echo $atOut
 
 # Disable flightmode
@@ -396,8 +354,8 @@ proto_atc_setup () {
                         'NW DETACH' )
                             nw_disconnect=1
                             ;;
-                        'NW PDN DEACT 0' )
-                            echo 'Session disconnected by the network'
+                        'ME PDN DEACT 0' )
+                            echo Session disconnected
                             proto_init_update "$ifname" 0
                             proto_send_update "$interface"
                             ;;
@@ -466,7 +424,7 @@ proto_atc_setup () {
                     ;;
             esac
         fi
-    done < ${device}
+	done < ${device}
 }
 
 
